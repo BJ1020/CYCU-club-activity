@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+    <meta
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CYCU社團活動網</title>
+
+    <!-- <link rel="stylesheet" href="style-首頁.css"> -->
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Huninn&display=swap');
+        /* 自訂樣式 */
+        body {
+            font-family: "Huninn", sans-serif;
+            font-weight: 200;
+            font-style: normal;
+            letter-spacing: 1.5px;
+        }
+        .sidebar {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h5 {
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .list-group-item a {
+            text-decoration: none;
+            color: #333;
+            /* font-weight: 500; */
+        }
+        .list-group-item:hover {
+            color: white;
+        }
+        .carousel-inner img {
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .navbar-brand {
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;   /* 垂直置中 */
+            gap: 0px;             /* 圖片與標題間距 */
+            height: 70px;          /* 與圖片高度一致 */
+        }
+        .navbar {
+            background-color:#736a6a !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;   /* 導覽列內容垂直置中 */
+            min-height: 80px;      /* 可依需求調整 */
+        }
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            min-height: 70px;
+        }
+        .navbar a {
+            color: white;
+        }
+        .navbar a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        .Button {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+        .circle-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            background-color: rgb(233, 218, 211);  /* 按鈕的背景顏色 */
+            color: rgb(98, 98, 98);          /* 按鈕文字的顏色 */
+            border-radius: 50px;
+            text-decoration: none;
+            /* font-weight: bold; */
+        }
+        .circle-btn:hover {
+            background: rgb(239, 194, 151);
+            color: rgb(98, 98, 98);
+        }
+
+        .list-group-item:hover {
+            color: #333;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+<!-- 導覽列 -->
+<nav class="navbar navbar-expand-lg bg-transparent fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="https://github.com/BJ1020/CYCU-club-activity/blob/main/picture/logo.png?raw=true" alt="" width="70" height="70" class="d-inline-block align-text-top">
+            <img src="https://github.com/BJ1020/CYCU-club-activity/blob/main/picture/logo%E6%A8%99%E9%A1%8C.png?raw=true" alt="" width="240" height="70" class="d-inline-block align-text-top">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="行事曆.html">行事曆</a></li>
+                <li class="nav-item"><a class="nav-link" href="gmail.html">使用者登入</a></li>
+                <li class="nav-item"><a class="nav-link" href="社團登入頁面.html">社團登入</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- 主要內容 -->
+<div class="container mt-5 pt-5">
+    <div class="row">
+        <!-- 左側社團分類 -->
+        <div class="col-md-3">
+            <div class="sidebar">
+                <h5>社團分類</h5>
+                <div class="Button">
+                    <a href="系學會列表.html" class="circle-btn">系學會</a>
+                    <a href="服務性列表.html" class="circle-btn">服務性</a>
+                    <a href="學藝性列表.html" class="circle-btn">學藝性</a>
+                    <a href="聯誼性列表.html" class="circle-btn">聯誼性</a>
+                    <a href="康樂性列表.html" class="circle-btn">康樂性</a>
+                    <a href="音樂性列表.html" class="circle-btn">音樂性</a>
+                    <a href="體育性列表.html" class="circle-btn">體育性</a>
+                    <a href="其他列表.html" class="circle-btn">其他</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右側輪播圖 -->
+        <div class="col-md-9">
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="2000">
+                        <img src="https://raw.githubusercontent.com/BJ1020/CYCU-club-activity/main/picture/p-1.jpg" class="d-block w-100" alt="First picture">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="https://raw.githubusercontent.com/BJ1020/CYCU-club-activity/main/picture/p-2.jpg" class="d-block w-100" alt="Second picture">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="https://raw.githubusercontent.com/BJ1020/CYCU-club-activity/main/picture/p-3.jpg" class="d-block w-100" alt="Third picture">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 近期活動區塊 -->
+    <div class="row mt-4">
+        <div class="col-9 ms-auto">
+            <div class="sidebar">
+                <h5>近期活動</h5>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <a href="行事曆.html" class="text-decoration-none">
+                            <span style="min-width: 60px; display: inline-block;">9/1</span>
+                            <span class="flex-grow-1">社團博覽會</span>
+                        </a>
+                        <span class="text-end">學生會</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <a href="行事曆.html" class="text-decoration-none">
+                            <span style="min-width: 60px; display: inline-block;">9/5</span>
+                            <span class="flex-grow-1">迎新茶會</span>
+                        </a>
+                        <span class="text-end">資工系</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <a href="行事曆.html" class="text-decoration-none">
+                            <span style="min-width: 60px; display: inline-block;">10/10</span>
+                            <span class="flex-grow-1">羽球友誼賽</span>
+                        </a>
+                        <span class="text-end">羽球社</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <a href="行事曆.html" class="text-decoration-none">
+                            <span style="min-width: 60px; display: inline-block;">10/15</span>
+                            <span class="flex-grow-1">程式設計比賽</span>
+                        </a>
+                        <span class="text-end">資訊社</span>
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
