@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一般使用者註冊</title>
+
+    <style>
+        /* 從 Google Fonts 載入「Huninn（和風雲黑體）」這個網頁字型 */
+        @import url('https://fonts.googleapis.com/css2?family=Huninn&display=swap');  
+
+        body {
+            font-family: "Huninn", sans-serif;  /* 使用 Huninn 字型 */
+            background-color: white; /* 白色背景 */
+        }
+
+        header {
+            background-color: #5f5656; /* 深灰色背景 */
+            color: white; /* 白色文字 */  
+            font-size: 30px; /* 標題字體大小 */
+            padding: 1rem; /* 內部邊距 */
+            text-align: center; /* 文字置中 */
+        }
+
+        .a2 {
+            color: #bbbbbb; /* 淺灰色文字 */
+            text-decoration: none; /* 去除下劃線 */
+            text-align: center; /* 文字置中 */
+            font-size: 15px; /* 字體大小 */
+            display: inline-block; /* 讓 padding 生效 */
+            line-height: 2; /* 增加行間距 */
+        }
+
+
+        .center-box {
+
+            background: f4f4f4; /* 淺灰色背景 */
+            border-radius: 12px; /* 圓角邊框 */
+            box-shadow: 0 0 25px rgba(0,0,0,0.1); /* 陰影效果 */
+            padding: 2rem 4rem; /* 上下左右內邊距 */
+            max-height: 1000px; /* 最大高度 */
+            max-width: 500px; /* 最大寬度 */
+            margin: 60px auto;  /* 水平置中並與上方有距離 */
+            text-align: center; /* 文字置中 */
+            font-size: 20px;
+            color: #000000 /* 黑色文字 */
+        }
+
+        button {
+            width: 100%;
+            font-size: 20px; /* 按鈕字體大小 */     
+            padding: 0.7rem;
+            background-color: #938888;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    
+        label {
+            font-size: 20px; /* 標籤字體大小 */
+        }
+
+
+        main { margin: 2rem;}
+
+        input {
+            width: 100%; /* 輸入框寬度 */
+            padding: 0.3rem; /* 輸入框內部邊距 */
+            margin: 0.5rem 0.5rem; /* 輸入框上下邊距 */
+            font-size: 20px; /* 輸入框字體大小 */
+            padding-left: 1rem;  /* 增加左側內邊距 */
+            padding-right: 1rem; /* 增加右側內邊距 */
+            box-sizing: border-box;
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+        }
+
+
+        .avatar-container {
+            display: flex; /* 使用 Flex 排版 */
+            justify-content: center; /* 水平置中 */
+            align-items: center; /* 垂直置中 */
+            gap: 1rem; /* 控制左右箭頭與圖片的間距 */
+            margin: 0rem; /* 增加上下間距 */
+            padding: 0; /* 確保容器內部也沒有邊距 */
+            background-color: transparent; /* 確保容器背景透明 */   
+        }
+
+        .avatar-controls {
+            font-size: 30px; /* 調整箭頭大小 */
+            color: #5f5656; /* 深灰色箭頭 */
+            cursor: pointer; /* 鼠標樣式 */
+            user-select: none; /* 禁止選取文字 */
+        }
+
+        .avatar img {
+            width: 280px; /* 調整圖片大小 */
+            height: 280px; /* 調整圖片大小 */
+            object-fit: cover; /* 保持圖片比例，裁剪超出部分 */
+            border-radius: 0%; /* 圓形圖片 */
+            box-shadow: none; /* 移除陰影效果 */
+            background-color: transparent; /* 確保圖片背景透明 */
+        }
+
+    </style>
+
+</head>
+
+
+
+<body>
+    <header>
+        <h1>一般使用者註冊</h1>
+    </header>
+
+    <main class="center-box">
+
+        <div class="avatar-container">
+            <span class="avatar-controls" id="avatar-prev" style="cursor:pointer;">&lt;</span>
+            <div class="avatar" style="display:inline-block;">
+                <img id="avatar-img" src="../Front/picture/牛頭梗.png" alt="大頭貼" >
+            </div>
+            <span class="avatar-controls" id="avatar-next" style="cursor:pointer;">&gt;</span>
+        </div>
+
+        <input type="hidden" id="avatar-choice" name="avatar" value="../Front/picture/牛頭梗.png">
+        
+
+        <form id="choose_avatar_form">
+            <div class="form-group" style="text-align: center;">
+
+                <label for="nickname">請輸入您的暱稱:</label>
+                <input type="text" id="nickname" name="nickname" required><br><br>
+
+                <label for="answer">請回答星巴克旁邊那棟叫什麼?</label>
+                <input type="text" id="answer" name="answer" required> 
+                
+                <a class="a2">此為驗證您是否為中原大學的學生</a>
+                <a class="a2" href="register_user.html" style="text-decoration: underline";>上一步</a><br><br>
+
+            <button type="submit" id="submit_button">提交</button>
+        </form>
+    
+
+
+
+        <script>
+
+
+            const avatars = [
+                '/Project_11127109/Front/picture/牛頭梗.png',
+                '/Project_11127109/Front/picture/博美.png',
+                '/Project_11127109/Front/picture/柴犬.png',
+                '/Project_11127109/Front/picture/雪納瑞.png',
+                '/Project_11127109/Front/picture/貓貓.png'
+
+            ];
+            let current = 0;
+            const img = document.getElementById('avatar-img');
+            const input = document.getElementById('avatar-choice');
+            document.getElementById('avatar-prev').onclick = function() {
+                current = (current - 1 + avatars.length) % avatars.length;
+                img.src = avatars[current];
+                input.value = avatars[current];
+            };
+            document.getElementById('avatar-next').onclick = function() {
+                current = (current + 1) % avatars.length;
+                img.src = avatars[current];
+                input.value = avatars[current];
+            };
+
+
+
+            // 提交表單到伺服器
+            document.getElementById("choose_avatar_form").addEventListener("submit", function(e) {
+                e.preventDefault(); // 阻止表單的默認提交行為
+
+                // 正確的驗證答案
+                const correctAnswers = ["維澈樓", "維澈大樓", "維澈"];
+
+
+                const account = localStorage.getItem('account');
+                const password = localStorage.getItem('password');
+                const email = localStorage.getItem('email');
+                const avatar = document.getElementById("avatar-choice").value;
+                const nickname = document.getElementById("nickname").value;
+                const answer = document.getElementById("answer").value;
+
+                // 驗證答案是否正確（忽略全形/半形空格與前後空白）
+                const answerInput = document.getElementById("answer").value.trim().replace(/\s/g, "");
+                if (!correctAnswers.includes(answerInput)) {
+                    alert("答案錯誤! 你很可疑，好像不是中原學生==");
+                    return;
+                }
+ 
+                fetch("http://localhost:8080/register_user", {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        account: account,
+                        password: password,
+                        email: email,
+                        avatar: avatar,
+                        nickname: nickname
+                    })
+                })
+                .then(res => {
+                    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+                    return res.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        alert("註冊成功！");
+                        window.location.href = "login_user.html"; // 跳轉到登入頁
+                    } else {
+                        alert(data.message || "註冊失敗，請重試。");
+                    }
+                });
+            });
+
+        </script>
+
+
+
+    </main>
+
+
+
+    <script>
+        // 從 localStorage 讀取資料
+        const account = localStorage.getItem('account');
+        const password = localStorage.getItem('password');
+        const email = localStorage.getItem('email');
+
+        // 提交所有資料到伺服器
+        document.getElementById("submit_button").addEventListener("click", function() {
+            const avatar = document.getElementById("avatar-choice").value;
+
+            fetch("http://localhost:8080/register_user", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    account: account,
+                    password: password,
+                    email: email,
+                    avatar: avatar
+                })
+            })
+            .then(res => {
+                if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+                return res.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    alert("註冊成功！");
+                    window.location.href = "login_user.html"; // 跳轉到登入頁
+                } else {
+                    alert(data.message || "註冊失敗，請重試。");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+
+<!-- 使用者選擇註冊/登入的頁面 -->
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>使用者選擇註冊/登入的頁面</title>
+
+    <style>
+        /* 從 Google Fonts 載入「Huninn（和風雲黑體）」這個網頁字型 */
+        @import url('https://fonts.googleapis.com/css2?family=Huninn&display=swap');  
+
+        body {
+            font-family: "Huninn", sans-serif;  /* 使用 Huninn 字型 */
+            background-color: white; /* 白色背景 */
+        }
+
+        header {
+            background-color: #5f5656; /* 深灰色背景 */
+            color: white; /* 白色文字 */  
+            font-size: 30px; /* 標題字體大小 */
+            padding: 1rem; /* 內部邊距 */
+            text-align: center; /* 文字置中 */
+        }
+
+
+        a{
+            color: white; /* 白色文字 */
+            text-decoration: none; /* 去除下劃線 */
+        }
+        .a2 {
+            color: #bbbbbb; /* 淺灰色文字 */
+            text-decoration: none; /* 去除下劃線 */
+            text-align: center; /* 文字置中 */
+            display: inline-block; /* 讓 padding 生效 */
+        }
+
+        .center-box img {
+            margin-top: 0px;
+            margin-bottom: 5px;
+            width: 250px;
+            height: 250px;
+        }
+            
+        .center-box {
+            background: f4f4f4; /* 淺灰色背景 */
+            border-radius: 12px; /* 圓角邊框 */
+            box-shadow: 0 0 25px rgba(0,0,0,0.1); /* 陰影效果 */
+            padding: 2rem 2.5rem; /* 上下左右內邊距 */
+            max-height: 1000px; /* 最大高度 */
+            max-width: 500px; /* 最大寬度 */
+            margin: 60px auto;  /* 水平置中並與上方有距離 */
+            text-align: center; /* 文字置中 */
+            color: #bbbbbb /* 白色文字 */
+        }
+        .center-box .btn {
+            display: inline-block; /* 讓按鈕成為行內塊元素 */
+            margin: 1rem 0.5rem 0 0.5rem; /* 上右下左邊距 */
+            padding: 1.5rem 5rem; /* 上下左右內邊距 */
+            background: #938888 0; /* 按鈕背景色 */
+            color: #fff; /* 按鈕文字顏色 */
+            font-size: 23px; /* 按鈕文字大小 */
+            border-radius: 5px; /* 按鈕圓角 */
+            text-decoration: none; /* 去除下劃線 */
+            /* font-weight: bold; 加粗字體 */
+        }
+
+        .bold { font-weight: bold; } /* 讓文字變粗體 */
+    </style>
+
+
+</head>
+
+
+
+<body>
+    <header>
+        <h1>狗勾找社團! LOGIN</h1>
+    </header>
+
+    <div class="center-box">
+
+            <img src="https://github.com/BJ1020/CYCU-club-activity/blob/main/picture/logo.png?raw=true"  
+                      class="img" ></a> 
+            <hr style="border: 1px solid #bbbbbb; "> <!-- 分隔線 -->
+            <a href="login_user.html" class="btn">我是一般使用者</a> <br>
+            <a href="login_club.html" class="btn">我是社團使用者</a> <br>
+
+            <!-- <div style="margin-top: 1.5rem;">         
+                <a class="a2">還尚未註冊嗎?</a>
+                <a class="a2" href="register_club.html">快點我註冊吧!</a>
+            </div>   -->
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Online Learning System</title>
+    <style>
+        /* 從 Google Fonts 載入「Huninn（和風雲黑體）」這個網頁字型 */
+        @import url('https://fonts.googleapis.com/css2?family=Huninn&display=swap');  
+
+        body {
+            font-family: "Huninn", sans-serif;  /* 使用 Huninn 字型 */
+            background-color: white; /* 白色背景 */
+        }
+
+        header {
+            background-color: #5f5656; /* 深灰色背景 */
+            color: white; /* 白色文字 */  
+            font-size: 30px; /* 標題字體大小 */
+            padding: 1rem; /* 內部邊距 */
+            text-align: center; /* 文字置中 */
+        }
+
+        .a2 {
+            color: #bbbbbb; /* 淺灰色文字 */
+            text-decoration: none; /* 去除下劃線 */
+            text-align: center; /* 文字置中 */
+            display: inline-block; /* 讓 padding 生效 */
+        }
+
+
+        .center-box {
+            background: f4f4f4; /* 淺灰色背景 */
+            border-radius: 12px; /* 圓角邊框 */
+            box-shadow: 0 0 25px rgba(0,0,0,0.1); /* 陰影效果 */
+            padding: 4rem 5rem; /* 上下左右內邊距 */
+            max-height: 1000px; /* 最大高度 */
+            max-width: 500px; /* 最大寬度 */
+            margin: 80px auto;  /* 水平置中並與上方有距離 */
+            text-align: center; /* 文字置中 */
+            font-size: 20px;
+            color: #000000 /* 黑色文字 */
+        }
+
+        button {
+            width: 100%;
+            font-size: 20px; /* 按鈕字體大小 */     
+            padding: 0.7rem;
+            background-color: #938888;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    
+        main { margin: 2rem;}
+
+        input {
+            width: 100%; /* 輸入框寬度 */
+            padding: 0.4rem; /* 輸入框內部邊距 */
+            margin: 0.5rem 0.5rem; /* 輸入框上下邊距 */
+            font-size: 20px; /* 輸入框字體大小 */
+            padding-left: 1rem;  /* 增加左側內邊距 */
+            padding-right: 1rem; /* 增加右側內邊距 */
+            box-sizing: border-box;
+            margin-left: 0.2rem;
+            margin-right: 0.2rem;
+        }
+
+
+    </style>
+</head>
+
+
+
+<body>
+    <header>
+        <h1> 一般使用者登入</h1>
+    </header>
+    <main class="center-box">
+        <form id="login_user_form">
+
+            <div class="form-group" style="text-align: left;"></div>
+                <label for="account">帳號:</label>
+                <input type="text" id="account" name="account" required autocomplete="username"><br><br>
+
+                <label for="password">密碼:</label>
+                <input type="password" id="password" name="password" required autocomplete="new-password">
+            </div>
+
+            <button style="margin-top: 1rem;" type="submit">登入</button>
+        </form>
+
+        <div style="margin-top: 1.5rem;">         
+            <a class="a2">還沒註冊使用者帳號嗎?</a>
+            <a class="a2" href="register_user.html" style="text-decoration: underline";>快點我註冊吧!</a>
+            <a class="a2" href="R&L_index.html" style="text-decoration: underline";>回首頁</a>
+        </div>  
+
+         <script>
+            document.getElementById("login_user_form").addEventListener("submit", function(e){
+                e.preventDefault();
+
+                fetch("http://localhost:8080/login_user", {
+                    method: 'POST', // 使用 POST 方法
+                    headers: { 'Content-Type': 'application/json'}, // 設定請求頭為 JSON
+                    body: JSON.stringify({  // 將表單資料轉換為 JSON 字串
+                        account: document.getElementById('account').value, 
+                        password: document.getElementById('password').value
+                    })
+                })
+
+                .then(res => {
+                    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+                    return res.json();  // 這裡不會拋錯，除非伺服器真的回傳 JSON
+                })
+                
+                .then(data => {
+                    if(data.success) {
+                        alert("登入成功！");
+                        console.log("即將跳轉到首頁-使用者.html");
+                        window.location.href = "首頁-使用者.html"; // 跳轉到登入頁
+                    } // if
+                    else
+                        alert(data.message || "輸入帳號或密碼錯誤，請重新輸入");
+                })
+
+            });
+
+        </script>
+
+    </main>
+
+</body>
+</html>
