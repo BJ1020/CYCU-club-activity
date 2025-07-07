@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學藝性列表</title>
+</head>
+
+    <style>
+        .all {
+            background-color:rgb(233, 218, 211); ;
+            height: 80%;
+            width: 80%;
+            margin: 20px auto;
+            padding: 30px 10px;
+            border-radius: 80px;
+        }
+        h1 {
+            font-size: 2.2vw;
+            text-align: center; 
+            color:  rgb(66, 65, 65);
+            margin: 1vw;
+        }
+        .container {
+            /* background-color: rgb(235, 228, 219); */
+            display: flex;
+            justify-content: center; /* 將三直排置中 */
+            margin: 1.5vw auto;
+            padding: 0 10px;
+            border-radius: 20px;
+            max-width: 800px; /* 設定最大寬度讓排版不會過於寬鬆 */
+        }
+        .column {
+            /* background-color: aquamarine; */
+            width: 28%; /* 每列佔30%的寬度 */
+            display: flex;
+            justify-content: center; 
+            flex-direction: column;
+            margin: 0 10px; /* 縮小每列之間的間距 */
+        }
+        .column a {
+            color:  rgb(66, 65, 65);
+            font-size: 1.3vw;
+            margin: 10px 0;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .column a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <section class="all">
+    <h1>- 學藝性社團 -</h1>
+    <div class="container">
+        <div class="column">
+            <a href="資工系學.html">中智社	</a>
+            <a href="資工系學.html">自動控制研習社	</a>
+            <a href="資工系學.html">基督徒學生團契	</a>
+            <a href="資工系學.html">聖經研究社</a>
+            <a href="資工系學.html">二次創作研究社	</a>
+            <a href="資工系學.html">咖啡研究社	</a>
+            <a href="資工系學.html">多語文化交流社	</a>
+            <a href="資工系學.html">模擬聯合國社	</a>
+        </div>
+        <div class="column">
+            <a href="資工系學.html">書法研究社	</a>
+            <a href="資工系學.html">青年領袖研習社</a>
+            <a href="資工系學.html">機動車輛研究社	</a>
+            <a href="資工系學.html">韓國文化研習社	</a>
+            <a href="資工系學.html">智慧機器人社	</a>
+            <a href="資工系學.html">手工藝品社	</a>
+            <a href="資工系學.html">串珠社</a>
+            <a href="資工系學.html">區塊鏈研究社</a>
+        </div>
+        <div class="column">
+            <a href="資工系學.html">天文社	</a>
+            <a href="資工系學.html">攝影社	</a>
+            <a href="資工系學.html">漫畫研習社	</a>
+            <a href="資工系學.html">美食研究社	</a>
+            <a href="資工系學.html">向日社</a>
+            <a href="資工系學.html">漢服研究社	</a>
+            <a href="資工系學.html">開源軟體開發社	</a>
+        </div>
+
+    </div>
+    </section>
+    <a href="index.html">回首頁</a>
+</body>
+</html>
