@@ -1,0 +1,665 @@
+<!-- 我的活動回饋首頁 -->
+
+<!-- 我的活動回饋首頁 -->
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的活動回饋</title>
+    <style>
+        /* 從 Google Fonts 載入「Huninn（和風雲黑體）」這個網頁字型 */
+        @import url('https://fonts.googleapis.com/css2?family=Huninn&display=swap');  
+
+        body {
+            font-family: "Huninn", sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #5f5656;
+            color: white;
+            font-size: 20px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .top-section {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .left-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 0 25px rgba(0,0,0,0.1);
+            height: fit-content;
+            display: grid;
+            gap: 30px;
+        }
+
+        .rating-card {
+            padding: 20px 0;
+        }
+
+        .right-section {
+            display: grid;
+            gap: 30px;
+        }
+        
+
+        .header-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 0 25px rgba(0,0,0,0.1);
+        }
+
+
+
+
+        .character {
+            font-size: 40px;
+        }
+
+        .speech-bubble {
+            background: #d4e6f7;
+            border: 2px solid #5f5656;
+            border-radius: 20px;
+            padding: 10px 20px;
+            position: relative;
+            font-size: 18px;
+            font-weight: bold;
+            color: #5f5656;
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 10px solid transparent;
+            border-top-color: #d4e6f7;
+        }
+
+        .rating-section {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .rating-number {
+            font-size: 48px;
+            font-weight: bold;
+            color: #5f5656;
+            margin-bottom: 5px;
+        }
+
+        .star-filled {
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            color: #ffc107;
+            width: 0%;
+            transition: width 0.8s ease-in-out;
+        }
+
+        /* 添加動畫相關的CSS */
+        .star-animate {
+            animation: starFill 0.8s ease-in-out forwards;
+        }
+
+        @keyframes starFill {
+            from {
+                width: 0%;
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .stars {
+            font-size: 24px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 2px;
+        }
+
+        .star {
+            position: relative;
+            display: inline-block;
+            font-size: 24px;
+            color: #ddd;
+            cursor: default;
+            transition: transform 0.3s ease;
+        }
+
+        .star:hover {
+            transform: scale(1.1);
+        }
+
+        .rating-text {
+            font-size: 16px;
+            color: #5f5656;
+        }
+
+        .content-section {
+            display: grid;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .message-board, .activity-records {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 0 25px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #5f5656;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid #5f5656;
+            padding-bottom: 10px;
+        }
+
+
+
+        .sample-message {
+            background: #f8f4e6;
+            border: 1px solid #5f5656;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .sample-record {
+            background: #f8f4e6;
+            border: 1px solid #5f5656;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .record-image {
+            width: 80px;
+            height: 80px;
+            background: #5f5656;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .record-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .record-content {
+            flex: 1;
+        }
+
+        .record-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #5f5656;
+            margin-bottom: 8px;
+        }
+
+        .record-details {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .footer-buttons {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            box-shadow: 0 0 25px rgba(0,0,0,0.1);
+        }
+
+        .footer-btn {
+            background: #938888;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-family: "Huninn", sans-serif;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+            width: 100%;
+        }
+
+        .footer-btn:hover {
+            background: #7a6f6f;
+        }
+
+        .footer-btn::before {
+            margin-right: 6px;
+        }
+
+        .btn-feedback::before {
+            content: '🐾';
+        }
+
+        .btn-comments::before {
+            content: '💬';
+        }
+
+        .btn-upload::before {
+            content: '📷';
+        }
+
+        .loading-message, .error-message, .no-records {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .error-message {
+            color: #d32f2f;
+        }
+
+        .no-records {
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                margin: 20px;
+                padding: 10px;
+            }
+            
+            .top-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+
+
+
+
+
+
+
+<body>
+
+
+    <header>
+        <h1>我的活動回饋頁面</h1>
+        <div id="current-date" style="font-size: 16px; margin-top: 10px;"></div>
+    </header>
+
+    <div class="main-container">
+        <!-- 頂部區域：左邊評分+按鈕，右邊內容 -->
+        <div class="top-section">
+            <!-- 左側評分+按鈕區域 -->
+            <div class="left-section">
+                <!-- 評分區域 -->
+                <div class="rating-card">
+                    <div class="rating-section">
+                        <div class="rating-number" id="rating-number">4.2</div>
+                        <div class="stars" id="stars-container">
+                            <!-- 動態生成的星星將會放在這裡 -->
+                        </div>
+                        <div class="rating-text">參與活動總評分</div>
+                    </div>
+                </div>
+
+                <!-- 按鈕區域移到左側下方 -->
+                <div class="footer-buttons">
+                    <button class="footer-btn btn-feedback" onclick="goToFeedback()">
+                        填寫活動回饋表單
+                    </button>
+                    <button class="footer-btn btn-comments" onclick="goToComments()">
+                        生成活動回憶錄
+                    </button>
+                    <button class="footer-btn btn-upload" onclick="goToUpload()">
+                        生成專屬 Dump
+                    </button>
+                </div>
+            </div>
+
+            <!-- 右側內容區域 -->
+            <div class="right-section">
+                <!-- 你的留言板 -->
+                <div class="message-board">
+                    <div class="section-title">你的留言板</div>
+                    <div class="sample-message">
+                        <strong>肥鼠：</strong>今天的活動真的很棒！學到了很多東西，謝謝主辦方的用心安排～
+                    </div>
+                    <div class="sample-message">
+                        <strong>呆魚：</strong>氣氛很好，大家都很熱情參與，期待下次的活動！
+                    </div>
+                </div>
+
+                <!-- 活動回饋紀錄 -->
+                <div class="activity-records">
+                    <div class="section-title">活動回饋紀錄</div>
+
+                    <div id="records-container">
+                        <div class="loading-message">載入中...</div>
+                    </div>
+
+
+
+
+                    <!-- <div class="sample-record">
+                        <div class="record-image">聖誕晚會</div>
+                        <div class="record-content">
+                            <div class="record-title">blablabla...</div>
+                            <div class="record-details">2024/12/20 | 滿意度：4.5⭐</div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="sample-record">
+                        <div class="record-image">迎新活動</div>
+                        <div class="record-content">
+                            <div class="record-title">很棒的迎新體驗</div>
+                            <div class="record-details">2024/09/15 | 滿意度：4.0⭐</div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <script>
+
+
+        // 動態星星評分函數 - 添加動畫
+        function createStarRating(rating, maxStars = 5) {
+            const container = document.getElementById('stars-container');
+            container.innerHTML = ''; // 清空容器
+            
+            for (let i = 1; i <= maxStars; i++) {
+                const starWrapper = document.createElement('div');
+                starWrapper.className = 'star';
+                
+                // 計算每顆星的填滿比例
+                let fillPercentage = 0;
+                if (rating >= i) {
+                    fillPercentage = 100; // 完全填滿
+                } else if (rating > i - 1) {
+                    fillPercentage = (rating - (i - 1)) * 100; // 部分填滿
+                }
+                
+                // 創建背景星星（空心）
+                const starBackground = document.createElement('span');
+                starBackground.textContent = '★';
+                starBackground.style.color = '#ddd';
+                
+                // 創建填滿的星星
+                const starFilled = document.createElement('span');
+                starFilled.textContent = '★';
+                starFilled.className = 'star-filled';
+                
+                starWrapper.appendChild(starBackground);
+                starWrapper.appendChild(starFilled);
+                container.appendChild(starWrapper);
+                
+                // 延遲動畫，讓星星依序填滿
+                setTimeout(() => {
+                    starFilled.style.width = fillPercentage + '%';
+                    if (fillPercentage > 0) {
+                        starFilled.classList.add('star-animate');
+                    }
+                }, i * 200); // 每顆星間隔200ms
+            }
+        }
+
+        // 動態更新評分的函數 - 添加數字動畫
+        function updateRating(newRating) {
+            const ratingElement = document.getElementById('rating-number');
+            const currentRating = parseFloat(ratingElement.textContent) || 0;
+            
+            // 數字動畫
+            animateNumber(currentRating, newRating, 1000, (value) => {
+                ratingElement.textContent = value.toFixed(1);
+            });
+            
+            // 延遲執行星星動畫
+            setTimeout(() => {
+                createStarRating(newRating);
+            }, 300);
+        }
+
+        // 數字動畫函數
+        function animateNumber(start, end, duration, callback) {
+            const startTime = performance.now();
+            
+            function animate(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // 使用 easeOutCubic 緩動函數
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                const currentValue = start + (end - start) * easeProgress;
+                
+                callback(currentValue);
+                
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                }
+            }
+            
+            requestAnimationFrame(animate);
+        }
+
+        // 添加載入動畫效果
+        function showLoadingAnimation() {
+            const ratingNumber = document.getElementById('rating-number');
+            const starsContainer = document.getElementById('stars-container');
+            
+            // 初始化為0
+            ratingNumber.textContent = '0.0';
+            starsContainer.innerHTML = '';
+            
+            // 添加載入效果
+            ratingNumber.style.opacity = '0.5';
+            ratingNumber.style.transform = 'scale(0.8)';
+            
+            setTimeout(() => {
+                ratingNumber.style.opacity = '1';
+                ratingNumber.style.transform = 'scale(1)';
+                ratingNumber.style.transition = 'all 0.5s ease';
+            }, 100);
+        }
+
+
+
+        // 頁面載入時初始化星星 - 載入回饋紀錄&添加載入動畫
+        document.addEventListener('DOMContentLoaded', function() {
+            showLoadingAnimation();
+            
+            // 載入回饋記錄
+            loadFeedbackRecords();
+            
+            // 模擬載入延遲
+            setTimeout(() => {
+                const currentRating = 4.2;
+                updateRating(currentRating);
+            }, 800);
+        });
+
+
+        // 獲取活動回饋記錄
+        async function loadFeedbackRecords() {
+            try {
+                const response = await fetch('http://localhost:8080/get_feedback');
+                if (response.ok) {
+                    const records = await response.json();
+                    console.log('獲取到的記錄:', records);
+                    displayFeedbackRecords(records);
+                } else {
+                    console.error('獲取回饋記錄失敗');
+                    document.getElementById('records-container').innerHTML = 
+                        '<div class="error-message">載入回饋記錄失敗</div>';
+                }
+            } catch (error) {
+                console.error('載入回饋記錄時出錯:', error);
+                document.getElementById('records-container').innerHTML = 
+                    '<div class="error-message">載入回饋記錄時出錯</div>';
+            }
+        }
+
+        // 顯示回饋記錄
+        function displayFeedbackRecords(records) {
+            const container = document.getElementById('records-container');
+            
+            if (records.length === 0) {
+                container.innerHTML = '<div class="no-records">尚無回饋記錄</div>';
+                return;
+            }
+
+            container.innerHTML = ''; // 清空載入訊息
+
+            records.forEach(record => {
+                const recordElement = createRecordElement(record);
+                container.appendChild(recordElement);
+            });
+        }
+
+        // 創建單個記錄元素
+        function createRecordElement(record) {
+            const recordDiv = document.createElement('div');
+            recordDiv.className = 'sample-record';
+
+            // 處理圖片顯示
+            const imageDiv = document.createElement('div');
+            imageDiv.className = 'record-image';
+            
+            if (record.activity_image) {
+                // 如果有圖片，顯示圖片
+                const img = document.createElement('img');
+                img.src = `http://localhost:8080/${record.activity_image}`;
+                console.log('圖片路徑:', img.src); 
+
+                img.alt = record.activity_name || '活動圖片';
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.objectFit = 'cover';
+                img.style.borderRadius = '8px';
+                
+                // 圖片載入失敗時顯示文字
+                img.onerror = function() {
+                    console.log('圖片載入失敗:', img.src);
+                    imageDiv.innerHTML = record.activity_name || '活動';
+                    imageDiv.style.color = 'white';
+                    imageDiv.style.fontSize = '14px';
+                    imageDiv.style.fontWeight = 'bold';
+                };
+                
+                imageDiv.appendChild(img);
+            } else {
+                // 沒有圖片時顯示活動名稱
+                console.log('沒有圖片資料');
+                imageDiv.textContent = record.activity_name || '活動';
+                imageDiv.style.color = 'white';
+                imageDiv.style.fontSize = '14px';
+                imageDiv.style.fontWeight = 'bold';
+            }
+
+            // 創建內容區域 - 簡化版本
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'record-content';
+
+            const titleDiv = document.createElement('div');
+            titleDiv.className = 'record-title';
+            titleDiv.textContent = record.activity_name || '活動記錄';
+
+            const detailsDiv = document.createElement('div');
+            detailsDiv.className = 'record-details';
+            detailsDiv.textContent = record.submit_date || '無日期';
+
+            contentDiv.appendChild(titleDiv);
+            contentDiv.appendChild(detailsDiv);
+
+            recordDiv.appendChild(imageDiv);
+            recordDiv.appendChild(contentDiv);
+
+            return recordDiv;
+        }
+
+
+
+
+
+
+
+        // 按鈕點擊事件處理函數
+        function goToFeedback() {
+            // 跳轉到回饋表單頁面
+            window.location.href = 'feedback.html';
+        }
+
+        function goToComments() {
+            // 跳轉到回饋紀錄頁面
+            alert('即將跳轉到活動回饋紀錄頁面');
+            // window.location.href = 'feedback_records.html';
+        }
+
+        function goToUpload() {
+            // 跳轉到照片上傳頁面
+            alert('即將跳轉到照片上傳頁面');
+            // window.location.href = 'photo_upload.html';
+        }
+
+    </script>
+</body>
+</html>

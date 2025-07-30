@@ -1,0 +1,365 @@
+<!-- 活動回饋留言表單 -->
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>活動回饋留言表單</title>
+    <style>
+        /* 從 Google Fonts 載入「Huninn（和風雲黑體）」這個網頁字型 */
+        @import url('https://fonts.googleapis.com/css2?family=Huninn&display=swap');  
+
+        body {
+            font-family: "Huninn", sans-serif;  /* 使用 Huninn 字型 */
+            background-color: #fdf5e6; /* 白色背景 */
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #5f5656; /* 深灰色背景 */
+            color: white; /* 白色文字 */  
+            font-size: 20px; /* 標題字體大小 */
+            padding: 1rem; /* 內部邊距 */
+            text-align: center; /* 文字置中 */
+        }
+
+        .center-box {
+            background: white; /* 淺灰色背景 */
+            border-radius: 12px; /* 圓角邊框 */
+            box-shadow: 0 0 25px rgba(0,0,0,0.1); /* 陰影效果 */
+            padding: 4rem 5rem; /* 上下左右內邊距 */
+            max-height: 1000px; /* 最大高度 */
+            max-width: 500px; /* 最大寬度 */
+            margin: 80px auto;  /* 水平置中並與上方有距離 */
+            text-align: left; /* 文字置中 */
+            font-size: 17px;
+            color: #000000; /* 黑色文字 */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        input[type="text"],
+        textarea { /* 輸入框和文本區域樣式 */
+            width: 100%;
+            height: 80px; /* 固定高度 */
+            resize: vertical; /* 只能調整高度 */
+            padding: 0.4rem; /* 輸入框內部邊距 */
+            margin: 0.5rem 0; /* 輸入框上下邊距 */
+            font-size: 15px; /* 輸入框字體大小 */
+            border: 1px solid #5f5656;
+            border-radius: 4px;
+            box-sizing: border-box; /* 包括內邊距和邊框在內的寬度計算 */
+        }
+
+        .rating { /* 星星樣式 */
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .rating span { /* 星星樣式 */
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button { /* 按鈕樣式 */
+            width: 100%;
+            font-size: 15px; /* 按鈕字體大小 */     
+            padding: 0.7rem;
+            background-color: #938888;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+
+
+
+
+<body>
+
+    <header>
+        <h1>活動回饋表單</h1>
+        <div id="current-date" style="font-size: 16px; margin-top: 10px;"></div> <!-- 用於顯示日期 -->
+    </header>
+
+
+    <div class="center-box">
+
+        <form id="feedback-form" >
+
+
+            <div style="margin-bottom: 32px;">
+                <label>請選擇社團分類：</label>
+                <select name="Classification" id="社團/系學會分類" required style="width: 100%; padding: 0.4rem; font-size: 15px; border: 1px solid #5f5656; border-radius: 4px; box-sizing: border-box;" onchange="updateSubOptions()">
+                    <option value="" disabled selected>請選擇社團分類</option>
+                    <option value="系學會">系學會</option>
+                    <option value="服務性社團">服務性社團</option> 
+                    <option value="學藝性社團">學藝性社團</option>
+                    <option value="聯誼性社團">聯誼性社團</option>
+                    <option value="康樂性社團">康樂性社團</option>
+                    <option value="音樂性社團">音樂性社團</option>
+                    <option value="體育性社團">體育性社團</option>
+                    <option value="其他社團">其他社團</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom: 32px;" id="主辦活動系級" hidden>
+                <label>請選擇您參與的活動主辦系：</label>
+                <select name="department" id="活動系級" required style="width: 100%; padding: 0.4rem; font-size: 15px; border: 1px solid #5f5656; border-radius: 4px; box-sizing: border-box; ">
+
+                </select>
+            </div>
+
+            <div style="margin-bottom: 32px;" id="參加活動名稱" hidden>
+                <label>請選擇本次參與的活動：</label>
+                <select name="activity" id="活動名稱" required style="width: 100%; padding: 0.4rem; font-size: 15px; border: 1px solid #5f5656; border-radius: 4px; box-sizing: border-box;">
+
+                </select>
+            </div>
+
+            <script>
+                function updateSubOptions() {
+                    const activity = document.getElementById('社團/系學會分類').value;
+                    const subActivityContainer = document.getElementById('主辦活動系級');
+                    const subActivity = document.getElementById('活動系級');
+                    const thirdCategoryContainer = document.getElementById('參加活動名稱');
+                    const thirdCategory = document.getElementById('活動名稱');
+
+                    // 清空子選項和第三層分類
+                    subActivity.innerHTML = '';
+                    thirdCategory.innerHTML = '';
+                    thirdCategoryContainer.hidden = true;
+
+
+                    if (activity === '系學會') {
+                        subActivityContainer.hidden = false;
+                        subActivity.innerHTML = `
+                            <option value="" disabled selected>請選擇主辦系</option>
+                            <option value="資訊工程系">資訊工程系</option>
+                            <option value="應用數學系">應用數學系</option>
+                            <option value="生物工程系">生物工程系</option>
+                        `;
+                    } else if (activity === '服務性社團') {
+                        subActivityContainer.hidden = false;
+                        subActivity.innerHTML = `
+                            <option value="" disabled selected>請選擇服務性社團</option>
+                            <option value="慈暉社">慈暉社</option>
+                            <option value="羅浮社">羅浮社</option>
+                            <option value="春暉社">春暉社</option>
+                        `;
+                    } else {
+                        subActivityContainer.hidden = true;
+                    }
+
+                    // 綁定子選項的變更事件
+                    subActivity.addEventListener('change', () => {
+                        const subActivityValue = subActivity.value;
+                        thirdCategory.innerHTML = ''; // 清空第三層分類
+                        if (subActivityValue === '資訊工程系') {
+                            thirdCategoryContainer.hidden = false;
+                            thirdCategory.innerHTML = `
+                                <option value="" disabled selected>請選擇活動</option>
+                                <option value="資工之夜">資工之夜</option>
+                                <option value="戲劇會">戲劇會</option>
+                                <option value="聯合系烤">聯合系烤</option>
+                            `;
+                        } else if (subActivityValue === '生物工程系') {
+                            thirdCategoryContainer.hidden = false;
+                            thirdCategory.innerHTML = `
+                                <option value="" disabled selected>請選擇活動</option>
+                                <option value="生科之夜">生科之夜</option>
+                                <option value="密室逃脫">密室逃脫</option>
+                                <option value="迎新宿營">迎新宿營</option>
+                            `;
+                        } else {
+                            thirdCategoryContainer.hidden = true;
+                        }
+                    });
+
+
+                } // updateSubOptions()
+
+
+
+            </script>
+
+
+            <div style="margin-bottom: 32px;">
+                <label>1.請問您是以什麼身份參與此活動？</label>
+                <div style="display: flex; gap: 20px; align-items: center;">
+                    <label style="display: flex; align-items: center; margin-bottom: 0;">
+                        <input type="radio" id="guest" name="role" value="guest"  required>
+                        參與者
+                    </label>
+                    <label style="display: flex; align-items: center; margin-bottom: 0;">
+                        <input type="radio" id="staff" name="role" value="staff" required>
+                        工作人員（工人/行政）
+                    </label>
+                </div>
+            </div>
+
+
+
+            <div style="margin-bottom: 32px;">
+                <label>1. 對於本次活動的整體滿意度？</label>
+                <input type="hidden" name="satisfaction" id="satisfaction-value-1" required>
+                <div class="rating" id="star-rating-1">
+                    <span data-value="1">&#9734;</span>
+                    <span data-value="2">&#9734;</span>
+                    <span data-value="3">&#9734;</span>
+                    <span data-value="4">&#9734;</span>
+                    <span data-value="5">&#9734;</span>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 32px;">
+                <label>2. 對於本次活動的喜歡程度？</label>
+                <input type="hidden" name="liking" id="satisfaction-value-2" required>
+                <div class="rating" id="star-rating-2">
+                    <span data-value="1">&#9734;</span>
+                    <span data-value="2">&#9734;</span>
+                    <span data-value="3">&#9734;</span>
+                    <span data-value="4">&#9734;</span>
+                    <span data-value="5">&#9734;</span>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 32px;">
+                <label>3. 對於本次活動的疲累程度？</label>
+                <input type="hidden" name="fatigue" id="satisfaction-value-3" required>
+                <div class="rating" id="star-rating-3">
+                    <span data-value="1">&#9734;</span>
+                    <span data-value="2">&#9734;</span>
+                    <span data-value="3">&#9734;</span>
+                    <span data-value="4">&#9734;</span>
+                    <span data-value="5">&#9734;</span>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 32px;">
+                <label>4. 對於本次活動的社恐程度？</label>
+                <input type="hidden" name="social_anxiety" id="satisfaction-value-4" required>
+                <div class="rating" id="star-rating-4">
+                    <span data-value="1">&#9734;</span>
+                    <span data-value="2">&#9734;</span>
+                    <span data-value="3">&#9734;</span>
+                    <span data-value="4">&#9734;</span>
+                    <span data-value="5">&#9734;</span>
+                </div>
+            </div>
+
+            <script>
+                function setupStarRating(starContainerId, inputId) {
+                    const stars = document.querySelectorAll(`#${starContainerId} span`);
+                    const satisfactionInput = document.getElementById(inputId);
+                    let selected = 0;
+
+                    function updateStars(value) {
+                        stars.forEach((star, i) => {
+                            star.innerHTML = i < value ? '&#9733;' : '&#9734;';
+                            star.style.color = i < value ? '#ffc107' : '#ccc';
+                        });
+                        satisfactionInput.value = value; // 更新隱藏輸入框的值
+                    }
+
+                    stars.forEach(star => {
+                        star.addEventListener('click', () => {
+                            selected = parseInt(star.getAttribute('data-value'));
+                            updateStars(selected);
+                        });
+                        star.addEventListener('mouseover', () => {
+                            const hoverValue = parseInt(star.getAttribute('data-value'));
+                            updateStars(hoverValue);
+                        });
+                        star.addEventListener('mouseout', () => {
+                            updateStars(selected);
+                        });
+                    });
+
+                    updateStars(0);
+                }
+
+                // 初始化三個星星評分問題
+                setupStarRating('star-rating-1', 'satisfaction-value-1');
+                setupStarRating('star-rating-2', 'satisfaction-value-2');
+                setupStarRating('star-rating-3', 'satisfaction-value-3');
+                setupStarRating('star-rating-4', 'satisfaction-value-4');
+            </script>
+
+            <div style="margin-bottom: 32px;">
+                <label for="activity-hours">請填寫您參與活動的時數（小時）：</label>
+                <input type="number" id="activity-hours" name="hours" min="0" step="1" required style="width: 100%; padding: 0.4rem; font-size: 15px; border: 1px solid #5f5656; border-radius: 4px; box-sizing: border-box;">
+            </div>
+
+            <div style="margin-bottom: 32px;">
+                <label for="feedback-image">5. 上傳活動相關圖片（可選）：</label>
+                <input type="file" id="feedback-image" name="activity_image" accept="image/*" style="width: 100%; padding: 0.4rem; font-size: 15px; border: 1px solid #5f5656; border-radius: 4px; box-sizing: border-box;">
+            </div>
+
+            <button type="submit" class="submit-btn">提交</button>
+        </form>
+    </div>
+
+
+
+    <script>
+
+        // 獲取今日的時間戳記
+        function getTodayDate() {
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0'); // 月份從 0 開始，需要加 1
+            const day = String(today.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        document.getElementById('current-date').textContent = `今日日期：${getTodayDate()}`;
+
+        document.getElementById('feedback-form').addEventListener('submit', async (event) => {
+            event.preventDefault(); // 阻止表單的默認提交行為
+
+            // 收集表單數據
+            const formData = new FormData(event.target);
+
+            formData.delete('社團/系學會分類'); // 移除不需要的欄位
+            formData.append('submit_date', getTodayDate());
+
+            try {
+                // 使用 FormData 直接傳送（支援文件上傳）
+                const response = await fetch('http://localhost:8080/feedback', {
+                    method: 'POST',
+                    body: formData, // 直接使用 FormData，不要轉換為 JSON
+                    // 不要設定 Content-Type，讓瀏覽器自動設定
+                });
+ 
+                if (response.ok) {
+                    const result = await response.json(); // 確保後端返回的是 JSON 格式
+                    alert(`表單提交成功！`); // 顯示提示框
+                    window.location.href = 'feedback_index.html';
+                } else {
+                    const errorText = await response.text(); // 如果回應不是 JSON，解析為文本
+                    alert('表單提交失敗: ' + errorText);
+                }
+
+            } catch (error) {
+                console.error('提交表單時出錯:', error);
+                alert('提交表單時出錯，請稍後再試');
+            }
+        });
+    </script>
+</body>
+</html>
